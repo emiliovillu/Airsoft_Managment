@@ -1,0 +1,25 @@
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-image: url('http://localhost:3005/img/logo_home.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.teams{
+  background-color: rgba(12, 78, 4, 0.54)
+}
+
+h1 ,h4, small, li{
+  color: rgb(192, 15, 15);
+}
+
+/* h4, small{
+  float: right;
+} */
+
+
+.teams > h1{
+  text-align: center;
+  border-bottom: solid 1px black;
+  color: rgb(0, 0, 0);
+}

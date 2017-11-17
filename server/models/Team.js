@@ -1,0 +1,28 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const collection = 'Teams'
+
+const TeamSchema = new Schema({
+  name: String,
+  logo: String,
+  location: {lat: Number, lng: Number},
+  members: [ 
+  { 
+    name: String,
+    lastName: String,
+    nick: String,
+    rol: String,
+    equipment: {
+      primary: String,
+      secondary: String,
+      extras: String
+    }
+  } 
+    ] 
+})
+  
+
+
+
+
+module.exports = mongoose.model('Teams', TeamSchema)
