@@ -16,6 +16,10 @@ const TeamSchema = new Schema({
       primary: String,
       secondary: String,
       extras: String
+    },
+    stats: {
+      eliminations: Number,
+      dead: Number
     }
   } 
     ] 
