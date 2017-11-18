@@ -1,0 +1,15 @@
+.miembros{
+  color: black;
+  margin-top: 20px;
+  /* box-shadow: 10px 5px 5px rgb(1, 116, 10); */
+  padding-left: 20px;
+  box-shadow :3px 3px olive, -1em 0 0.4em olive;
+  background-color: rgb(3, 94, 11);
+  
+}
+h1{
+  color: black;
+  background-color: rgb(3, 94, 11);
+  text-align: center;
+  box-shadow :3px 3px olive, -1em 0 0.4em olive;
+}

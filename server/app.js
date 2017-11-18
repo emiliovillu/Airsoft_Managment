@@ -5,6 +5,7 @@ const cors = require('cors')
 // const passport = require('./config/passport')
 
 const routesTeam = require('./routes/Team')
+const routesPlayer = require('./routes/Player')
 
 
 
@@ -18,6 +19,7 @@ app.use( cors() )
 // app.use( passport.initialize() )
 
 app.use(routesTeam)
+app.use(routesPlayer)
 
 
 

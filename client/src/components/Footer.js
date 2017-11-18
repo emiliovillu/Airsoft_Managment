@@ -5,7 +5,7 @@ import '../styles/Footer.css'
 const Footer = () => (
 	<footer>
 		<div className="container">
-		<div className="row">
+		<div className="row footer">
 			<div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div className="copyright">
 				<p>Copyright © 2017, All Rights Reserverd SkylabCoders</p>

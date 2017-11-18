@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const listTeams = () => {
+export const listTeams = () => {
   const url = 'http://localhost:3005/api/team'
   return axios.get(url)
     .then(response => {
@@ -8,7 +8,22 @@ const listTeams = () => {
     })
 }
 
-export default listTeams
+export const getTeamById = (id) => {
+  const url = `http://localhost:3005/api/team/${id}`
+  return axios.get(url)
+    .then(response => {
+      return response.data
+    })
+}
+
+export const getPlayers = (id) => {
+  const url = `http://localhost:3005/api/player/${id}`
+  return axios.get(url)
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
+}
 
 
  
