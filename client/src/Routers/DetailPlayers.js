@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getPlayers } from '../services/api'
 import '../styles/DetailPlayer.css'
 
-class DetailPlayer extends Component {
+class DetailPlayers extends Component {
   constructor(props){
     super(props)
 
@@ -80,4 +80,4 @@ class DetailPlayer extends Component {
   
 }
 
-export default DetailPlayer
+export default DetailPlayers

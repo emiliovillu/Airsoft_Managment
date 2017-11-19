@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 
-const getPlayer = require('../Player/handler/getPlayer')
+const getPlayers = require('../Player/handler/getPlayers')
+const getMemberInTeamById = require('../Player/handler/getMemberInTeamById')
 
 
-
-
-router.get('/api/player/:id', getPlayer)
+router.get('/api/teams/:teamID/members/:memberID', getMemberInTeamById)
+router.get('/api/players/:id', getPlayers)
 
 module.exports = router

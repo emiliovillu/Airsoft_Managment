@@ -25,6 +25,15 @@ export const getPlayers = (id) => {
     })
 }
 
+export const getPlayerByIdInTeam = (teamID, memberID) => {
+  const url = `http://localhost:3005/api/teams/${teamID}/members/${memberID}`
+  return axios.get(url)
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
+}
+
 
  
 
