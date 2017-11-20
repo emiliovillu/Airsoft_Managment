@@ -12,6 +12,7 @@ const TeamSchema = new Schema({
     lastName: String,
     nick: String,
     rol: String,
+    img: String,
     equipment: {
       primary: String,
       secondary: String,
@@ -25,13 +26,7 @@ const TeamSchema = new Schema({
     ] 
 })
  
-TeamSchema.statics.getPlayerById = function(id) {
-  return this.find()
-                .then( team => team.members.find( member => {
-                  
-                } ))
-                .then( team => cats.map( cat => cat.name || ''))
-};
+
 
 
 
