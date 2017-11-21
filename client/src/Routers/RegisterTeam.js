@@ -34,8 +34,8 @@ class RegisterTeam extends Component{
 
 	render() {
 		return(
-      <div>
-        <legend>REGISTRA TU EQUIPO</legend>
+			<div>
+				<legend>REGISTRA TU EQUIPO</legend>
 				<form>
 					<div className="form-group">
 						<label for="img-team">Logo del Equipo</label>

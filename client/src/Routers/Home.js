@@ -38,7 +38,7 @@ class Home extends Component {
 				<Row>
 					{
 						this.state.teams.length &&
-          this.state.teams.map((team,i) => {
+          	this.state.teams.map((team,i) => {
           	return (
           		<div className="jumbotron teams">
           			<Link id="lista" to={`/team/${team._id}`}>

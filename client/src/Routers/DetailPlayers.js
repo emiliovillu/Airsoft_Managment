@@ -11,10 +11,10 @@ class DetailPlayers extends Component {
 		this.state = {
 			members: []
 		}
-		this.upPlayer = this.upPlayer.bind(this)
+		this.upPlayers = this.upPlayers.bind(this)
 	}
 
-	upPlayer(id) {
+	upPlayers(id) {
 		getPlayers(id)
 			.then(response => {
 				console.log(response)
@@ -26,7 +26,7 @@ class DetailPlayers extends Component {
 
 	componentDidMount(){
 		let { id } = this.props.match.params
-		this.upPlayer(id)
+		this.upPlayers(id)
 	}
 
 	render () {
@@ -38,7 +38,7 @@ class DetailPlayers extends Component {
 						<ul className="list-unstyled">
 							{
 								this.state.members.length && 
-            this.state.members.map(member => {
+            		this.state.members.map(member => {
             	return(
             		<li>
             			<Col xs={12} sm={4} md={4} className="miembros">
@@ -57,19 +57,28 @@ class DetailPlayers extends Component {
             						<p>Extras:<br/>{member.equipment.extras}</p>
             					</li>
             				</ul>
-            				<h3>Estadisticas:</h3>
-            				<ul>
-            					<li>
-            						{`Eliminaciones: ${member.stats.eliminations}`}
-            					</li>
-            					<li>
-            						{`Muertes: ${member.stats.dead}`}
-            					</li>
-            				</ul>
+            						<h3>Estadisticas:</h3>
+            						{ 
+            							member.stats &&
+											<ul>
+												<li>
+													{
+														member.stats.eliminations &&
+														`Eliminaciones: ${member.stats.eliminations}` 
+													}
+												</li>
+												<li>
+													{
+														member.stats.dead && 
+														`Muertes: ${member.stats.dead}`
+													}
+												</li>
+											</ul>
+            						}
             			</Col>
             		</li>
             	)
-            })
+            		})
 							}
 						</ul>
 					</Col>

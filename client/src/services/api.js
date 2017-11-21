@@ -42,6 +42,14 @@ export const addTeam = (params) => {
 		})
 }
 
+export const addPlayerById = (id, params) => {
+	const url = `http://localhost:3005/api/team/${id}/addplayer`
+	return axios.post(url, params)
+		.then(function(response){
+			return response
+		})
+}
+
 
 //  url --> crear members
 // http://localhost:3005/api/users/:userId/teams/:teamId/members
