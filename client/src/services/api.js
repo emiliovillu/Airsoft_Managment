@@ -1,7 +1,8 @@
 import axios from 'axios'
+const { REACT_APP_API_SERVER } = process.env
 
 export const listTeams = () => {
-	const url = 'http://localhost:3005/api/team'
+	const url =  `${REACT_APP_API_SERVER}/api/team`
 	return axios.get(url)
 		.then(response => {
 			return response.data
@@ -9,7 +10,7 @@ export const listTeams = () => {
 }
 
 export const getTeamById = (id) => {
-	const url = `http://localhost:3005/api/team/${id}`
+	const url = `${REACT_APP_API_SERVER}/api/team/${id}`
 	return axios.get(url)
 		.then(response => {
 			return response.data
@@ -17,7 +18,7 @@ export const getTeamById = (id) => {
 }
 
 export const getPlayers = (id) => {
-	const url = `http://localhost:3005/api/players/${id}`
+	const url = `${REACT_APP_API_SERVER}/api/players/${id}`
 	return axios.get(url)
 		.then(response => {
 			console.log(response)
@@ -26,7 +27,7 @@ export const getPlayers = (id) => {
 }
 
 export const getPlayerByIdInTeam = (teamID, memberID) => {
-	const url = `http://localhost:3005/api/teams/${teamID}/members/${memberID}`
+	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}`
 	return axios.get(url)
 		.then(response => {
 			console.log(response)
@@ -35,7 +36,7 @@ export const getPlayerByIdInTeam = (teamID, memberID) => {
 }
 
 export const addTeam = (params) => {
-	const url = 'http://localhost:3005/api/addteam'
+	const url = `${REACT_APP_API_SERVER}/api/addteam`
 	return axios.post(url, params)
 		.then(function(response){
 			return response
@@ -43,15 +44,24 @@ export const addTeam = (params) => {
 }
 
 export const addPlayerById = (id, params) => {
-	const url = `http://localhost:3005/api/team/${id}/addplayer`
+	const url = `${REACT_APP_API_SERVER}/api/team/${id}/addplayer`
 	return axios.post(url, params)
 		.then(function(response){
 			return response
 		})
 }
 
+export const removePlayerByIdInTeam = (teamID, memberID) => {
+	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}`
+	return axios.post(url)
+		.then(function(response){
+			return response
+		})
+}
+
+
 
 //  url --> crear members
-// http://localhost:3005/api/users/:userId/teams/:teamId/members
+// ${REACT_APP_API_SERVER}/api/users/:userId/teams/:teamId/members
 // url --> crear teams
-// http://localhost:3005/api/users/:userId/teams/
+// ${REACT_APP_API_SERVER}/api/users/:userId/teams/

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Jumbotron }  from 'react-bootstrap'
+import { Grid, Row }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import  {listTeams}  from '../services/api'
 import '../styles/Home.css'
@@ -13,8 +13,6 @@ class Home extends Component {
     
 	}
   
-
-  
 	componentDidMount(){
 		listTeams()
 			.then(response => {
@@ -24,8 +22,7 @@ class Home extends Component {
 				// console.log('aaaaaaaaa', this.state.teams.ObjectId())
 			})
 	}
-    
-
+  
 	render () {
 		//const malagaUrl = "https://maps.googleapis.com/maps/api/staticmap?center=Málaga,ES&zoom=14&size=400x400&key=AIzaSyCgs983Frq4YygbwV2uHawWmBXOj3vkpGM"
 		// const members = this.state.teams.length&&this.state.teams

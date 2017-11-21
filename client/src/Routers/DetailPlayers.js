@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Jumbotron }  from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Grid, Row, Col }  from 'react-bootstrap'
 import { getPlayers } from '../services/api'
 import '../styles/DetailPlayer.css'
 

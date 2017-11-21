@@ -1,7 +1,7 @@
 require('dotenv').load()
 const {PORT, URL_DB} = process.env
 
-const app = require('./app')
+const app = require('../server/app')
 const db = require('./config/db')
 
 db.openUri(URL_DB)

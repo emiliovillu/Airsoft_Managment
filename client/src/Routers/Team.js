@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Jumbotron }  from 'react-bootstrap'
+import { Grid, Row, Col }  from 'react-bootstrap'
 import LinkMapModal from '../components/LinkMapModal'
 import { Link } from 'react-router-dom'
 import { getTeamById } from '../services/api'
