@@ -48,6 +48,21 @@ class Player extends Component {
 
 	render() {
 		return(
+			<Grid>
+				<Row>
+					<Col xs={12} sm={6} md={6}>
+						<div className="jumbotron">
+							<h1>{this.state.nick}</h1>
+							<p>{this.state.name}</p>
+							<p>{this.state.name}</p>
+							<p>{this.state.name}</p>
+							<h3>Equipamiento</h3>
+							
+							<p><a className="btn btn-danger btn-lg" href="#" role="button">Learn more</a></p>
+						</div>
+					</Col>
+				</Row>
+			</Grid>
 			
 		)
 	}
