@@ -6,7 +6,7 @@ import '../styles/Header.css'
 const Header = () => (
   
 	<header>
-		<nav className="navbar navbar-static-top navbar-inverse navbar">
+		<nav id="menu" className="navbar  navbar-inverse navbar-fixed-top">
 			<div className="container">
 				<div className="navbar-header">
 					<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">

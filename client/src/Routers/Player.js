@@ -19,6 +19,7 @@ class Player extends Component {
 			extras: '',
 			stats: ''
 		}
+		this.handleClickEdit = this.handleClickEdit.bind(this)
 		this.handleClickRemove = this.handleClickRemove.bind(this)
 		this.upPlayer = this.upPlayer.bind(this)
 	}
@@ -26,7 +27,6 @@ class Player extends Component {
 	upPlayer (teamID, memberID) {
 		getPlayerByIdInTeam(teamID, memberID)
 			.then(response => {
-				console.log(response, 'HOLA')
 				this.setState({
 					name: response.name,
 					lastName: response.lastName,
@@ -42,9 +42,16 @@ class Player extends Component {
 	}
 
 	handleClickRemove () {
-		console.log('borrado!!')
 		let { teamID, memberID } = this.props.match.params
 		removePlayerByIdInTeam(teamID, memberID)
+			.then(() => {
+				this.props.history.push(`/team/${this.props.match.params.teamID}`)
+			})
+	}
+
+	handleClickEdit () {
+		let { teamID, memberID } = this.props.match.params
+		this.props.history.push(`/team/${teamID}/player/${memberID}/editplayer`)
 	}
 
 	componentDidMount(){
@@ -103,7 +110,7 @@ class Player extends Component {
 									<div className="panel-heading" role="tab" id="headingThree">
 										<h4 className="panel-title">
 											<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-											EXTRAS
+											EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
 											</a>
 										</h4>
 									</div>
@@ -115,12 +122,13 @@ class Player extends Component {
 								</div>
 							</div>
 							<button 
-								onClickRemove={this.handClickRemove} 
+								onClick={this.handleClickRemove} 
 								className="btn btn-danger btn-lg" 
 								role="button">
 							Cargarse este Bastardo!!
 							</button>
 							<button
+								onClick={this.handleClickEdit} 
 								className="btn btn-warning btn-lg" 
 								role="button">
 							Editar este Bastardo!!

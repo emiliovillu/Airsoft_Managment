@@ -1,16 +1,20 @@
 import React from 'react'
 
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 
-const ShowMaps = withGoogleMap(props =>
-	<GoogleMap
-		defaultZoom={10}
-		center={{ lat: 36.617670, lng: -4.501615 }}
-	>
-		<Marker
-			position={{ lat: 36.617670, lng:  -4.501615,}}
-		/>
-	</GoogleMap>
-)
+const ShowMaps = withGoogleMap(props => {
+	
+	return (
+		<GoogleMap
+			defaultZoom={10}
+			center={props.latLng}
+		>
+			<Marker
+				position={props.latLng}
+			/>
+		</GoogleMap>
+	)
+
+})
 
 export default ShowMaps

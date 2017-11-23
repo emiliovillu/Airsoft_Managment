@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import ShowMaps from './ShowMap'
 
 class LinkMapModal extends Component {
-	constructor () {
-		super()
+	constructor (props) {
+		super(props)
 		this.state = {
 			showModal: false
 		}
@@ -27,14 +27,14 @@ class LinkMapModal extends Component {
 		})
 	}
 	render () {
+		
 		return (
 			<div>
 			
 				<ShowMaps
 					containerElement={<div style={{ height: `200px` }} />}
 					mapElement={<div style={{ height: `100%` }} />}
-					lat={this.props.latitude}
-					lng={this.props.longitude}
+					latLng={this.props.latLng}
 				/>
 					
 			</div>

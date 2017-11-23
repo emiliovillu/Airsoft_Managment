@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { addPlayerById } from '../services/api'
+import { getPlayerByIdInTeam, editPlayerById } from '../services/api'
 
-class CreatePlayer extends Component{
+class EditPlayer extends Component{
   
 	constructor(){
 		super()
@@ -14,10 +14,11 @@ class CreatePlayer extends Component{
 			primary: '',
 			secondary: '',
 			extras: '',
-			button: 'Crear mi Jugador'
+			button: 'Editar mi Jugador'
 		}
 		this.handleClick = this.handleClick.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+		this.upPlayer = this.upPlayer.bind(this)
 	}
   
 	handleChange(e) {
@@ -26,9 +27,34 @@ class CreatePlayer extends Component{
 		})
 	}
   
+
+	upPlayer (teamID, memberID) {
+		getPlayerByIdInTeam(teamID, memberID)
+			.then(response => {
+				this.setState({
+					name: response.name,
+					lastName: response.lastName,
+					nick: response.nick,
+					rol: response.rol,
+					img: response.img,
+					primary: response.equipment.primary,
+					secondary: response.equipment.secondary,
+					extras: response.equipment.extras,
+					stats: response.stats
+				})
+			})
+	}
+  
+	componentDidMount(){
+		let { teamID, memberID } = this.props.match.params
+		this.upPlayer(teamID, memberID)
+	}
+  
+  
 	handleClick(){
-		this.setState({button : 'Guardando jugador'}, () => {
-			addPlayerById(this.props.match.params.id, {
+		let { teamID, memberID } = this.props.match.params
+		this.setState({button : 'Guardando jugador...'}, () => {
+			editPlayerById(teamID, memberID, {
 				name: this.state.name,
 				lastName: this.state.lastName,
 				nick: this.state.nick,
@@ -37,16 +63,16 @@ class CreatePlayer extends Component{
 				primary: this.state.primary,
 				secondary: this.state.secondary,
 				extras: this.state.extras,
-			}).then(() => {
-				this.props.history.push(`/team/${this.props.match.params.id}`)
 			})
+				.then(() => {
+					let { teamID, memberID } = this.props.match.params
+					this.props.history.push(`/team/${teamID}/player/${memberID}`)
+				})
 		})
-
+	}
 		
       
-      
-	}
-
+    
 	render() {
 		return(
 			<div>
@@ -64,7 +90,7 @@ class CreatePlayer extends Component{
 						/>
 					</div>
 					<div className="form-group">
-						<label for="exampleFormControlInput1">Nombre del Juagador</label>
+						<label for="exampleFormControlInput1">Nombre del Juagdor</label>
 						<input 
 							type="text"
 							name="name"
@@ -76,7 +102,7 @@ class CreatePlayer extends Component{
 						/>
 					</div>
 					<div className="form-group">
-						<label for="exampleFormControlInput1">Apellido del Juagdor</label>
+						<label for="exampleFormControlInput1">Apellido del Juagador</label>
 						<input 
 							type="text"
 							name="lastName"
@@ -161,4 +187,4 @@ class CreatePlayer extends Component{
 	}
 }
 
-export default CreatePlayer
+export default EditPlayer

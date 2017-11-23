@@ -59,6 +59,32 @@ export const removePlayerByIdInTeam = (teamID, memberID) => {
 		})
 }
 
+export const removeTeamById = (id) => {
+	const url = `${REACT_APP_API_SERVER}/api/team/${id}`
+	return axios.post(url)
+		.then(function(response){
+			return response
+		})
+}
+
+
+export const editPlayerById = (teamID, memberID, params) => {
+	console.log(teamID, memberID)
+	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}/editplayer`
+	return axios.post(url, params)
+		.then(function(response){
+			return response
+		})
+}
+
+export const editTeamById = (id, params) => {
+	const url = `${REACT_APP_API_SERVER}/api/team/${id}/editteam`
+	return axios.post(url, params)
+		.then(function(response){
+			return response
+		})
+}
+
 
 
 //  url --> crear members

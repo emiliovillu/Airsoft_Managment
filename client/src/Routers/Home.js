@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import  {listTeams}  from '../services/api'
+import LinkMapModal from '../components/LinkMapModal'
 import '../styles/Home.css'
 
 class Home extends Component {
@@ -56,9 +57,10 @@ class Home extends Component {
           				{/*<img width="210" src={malagaUrl} alt=""/>*/}
           				{/*<img width='300' src={`http://localhost:3005/${team.logo}`} className="img-circle" />*/}
           			</ul>
+          				<LinkMapModal latLng={team.location}/>
           		</div>
           	)
-          })
+          	})
 					}
 				</Row>
 			</Grid>

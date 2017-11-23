@@ -5,7 +5,7 @@ function addPlayerById(req, res) {
   const { name, lastName, nick, rol, img, primary, secondary, extras, eliminations, dead } = req.body
   console.log(req.body)
   Team.findByIdAndUpdate(id, 
-    { $push: {'members': {
+    { $addToSet: {'members': {
       name: name, 
       lastName: lastName, 
       nick: nick, 

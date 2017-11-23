@@ -1,11 +1,12 @@
 const Team = require('../../../models/Team')
 
 function addTeam(req, res) {
-  const { name, logo } = req.body
-  const team = new Team({ name, logo });
+  const { name, logo, location } = req.body
+  console.log(location.lat, 'desde el server')
+  const team = new Team({ name, logo, location });
   team.save()
     .then( response =>
-        res.status(200).json({ msg: `Team with name ${name} created successfully` })
+        res.status(200).json({ msg: response })
     )
     .catch( error =>{
         console.log(error)
