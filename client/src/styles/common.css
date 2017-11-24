@@ -1,0 +1,9 @@
+.registerTeam label {
+  color: white;
+  font-size: 20px;
+  font-weight: normal
+}
+
+.registerTeam .image-preview-input {
+  width: 100%;
+}

@@ -1,6 +1,8 @@
 require('dotenv').load()
 const {PORT, URL_DB} = process.env
 
+global.__base = __dirname
+
 const app = require('../server/app')
 const db = require('./config/db')
 

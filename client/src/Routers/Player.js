@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Jumbotron }  from 'react-bootstrap'
+import { Grid, Row, Col, Jumbotron, Image }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getPlayerByIdInTeam, removePlayerByIdInTeam } from '../services/api'
 import '../styles/DetailPlayer.css'
@@ -67,75 +67,78 @@ class Player extends Component {
 					{
 						this.state.nick &&
 			
-					<Col xs={12} sm={12} md={12}>
-						<div className="jumbotron">
-							<h1>{this.state.nick}</h1>
-							<h3>NOMBRE</h3>
-							<p>{this.state.name}</p>
-							<h3>APELLIDO</h3>
-							<p>{this.state.lastName}</p>
-							<h3>ROL:</h3>
-							<p>{this.state.rol}</p>
-							<h3>Equipamiento</h3>
-							<div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-								<div className="panel panel-default">
-									<div className="panel-heading" role="tab" id="headingOne">
-										<h4 className="panel-title">
-											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-											REPLICA PRIMARIA <img src="http://localhost:3005/img/rifle.png" alt=""/>
-											</a>
-										</h4>
+						<Col xs={12} sm={6} md={12}>
+							<div className="jumbotron">
+								<h1>{this.state.nick}</h1>
+								<h3>NOMBRE</h3>
+								<p>{this.state.name}</p>
+								<h3>APELLIDO</h3>
+								<p>{this.state.lastName}</p>
+								<h3>ROL:</h3>
+								<p>{this.state.rol}</p>
+								<h3>Equipamiento</h3>
+								<div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									<div className="panel panel-default">
+										<div className="panel-heading" role="tab" id="headingOne">
+											<h4 className="panel-title">
+												<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						REPLICA PRIMARIA <img src="http://localhost:3005/img/rifle.png" alt=""/>
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+											<div className="panel-body">
+												{this.state.primary}
+											</div>
+										</div>
 									</div>
-									<div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-										<div className="panel-body">
-											{this.state.primary}
+									<div className="panel panel-default">
+										<div className="panel-heading" role="tab" id="headingTwo">
+											<h4 className="panel-title">
+												<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						REPLICA SECUNDARIA <img src="http://localhost:3005/img/pistola.png" alt=""/> 
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+											<div className="panel-body">
+												{this.state.secondary}
+											</div>
+										</div>
+									</div>
+									<div className="panel panel-default">
+										<div className="panel-heading" role="tab" id="headingThree">
+											<h4 className="panel-title">
+												<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
+												</a>
+											</h4>
+										</div>
+										<div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+											<div className="panel-body">
+												{this.state.extras}
+											</div>
 										</div>
 									</div>
 								</div>
-								<div className="panel panel-default">
-									<div className="panel-heading" role="tab" id="headingTwo">
-										<h4 className="panel-title">
-											<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-											REPLICA SECUNDARIA <img src="http://localhost:3005/img/pistola.png" alt=""/> 
-											</a>
-										</h4>
-									</div>
-									<div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-										<div className="panel-body">
-											{this.state.secondary}
-										</div>
-									</div>
-								</div>
-								<div className="panel panel-default">
-									<div className="panel-heading" role="tab" id="headingThree">
-										<h4 className="panel-title">
-											<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-											EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
-											</a>
-										</h4>
-									</div>
-									<div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-										<div className="panel-body">
-											{this.state.extras}
-										</div>
-									</div>
-								</div>
+								<button 
+									onClick={this.handleClickRemove} 
+									className="btn btn-danger btn-lg" 
+									role="button">
+						Cargarse este Bastardo!!
+								</button>
+								<button
+									onClick={this.handleClickEdit} 
+									className="btn btn-warning btn-lg" 
+									role="button">
+						Editar este Bastardo!!
+								</button>
 							</div>
-							<button 
-								onClick={this.handleClickRemove} 
-								className="btn btn-danger btn-lg" 
-								role="button">
-							Cargarse este Bastardo!!
-							</button>
-							<button
-								onClick={this.handleClickEdit} 
-								className="btn btn-warning btn-lg" 
-								role="button">
-							Editar este Bastardo!!
-							</button>
-						</div>
-					</Col>
+						</Col>
 					}
+					<Col xs={12} md={6}>
+						<Image width="200" src={ this.state.img } alt={this.state.img} responsive />
+					</Col>
 				</Row>
 			</Grid>
 		)

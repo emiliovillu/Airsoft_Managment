@@ -8,6 +8,7 @@ const cors = require('cors')
 
 const routesTeam = require('./routes/Team')
 const routesPlayer = require('./routes/Player')
+const routesUploadImg = require('./routes/UploadImg')
 
 
 
@@ -23,7 +24,7 @@ app.use(express.static('public'))
 
 app.use(routesTeam)
 app.use(routesPlayer)
-
+app.use(routesUploadImg)
 
 
 module.exports = app

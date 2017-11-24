@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { getPlayerByIdInTeam, editPlayerById } from '../services/api'
+import ImageUpload from '../components/ImageUpload'
+import { Row, Col, Image } from 'react-bootstrap'
+
+import axios from 'axios'
 
 class EditPlayer extends Component{
   
@@ -70,27 +74,36 @@ class EditPlayer extends Component{
 				})
 		})
 	}
-		
+	uploadFile = async file => {
+    let data = new FormData()
+    data.append('file', file)
+    
+    const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+    this.setState({ img: imageLink })
+  }	
       
     
 	render() {
+		const { img } = this.state
+		console.log(img)
 		return(
 			<div>
 				<legend>Crear tu Jugador</legend>
 				<form>
-					<div className="form-group">
-						<label for="img-team">Imagen del Jugador</label>
-						<input 
-							type="file"
-							name="img"
-							onChange={this.handleChange} 
-							value={this.state.img} 
-							className="form-control-file" 
-							id="img-team"
-						/>
-					</div>
-					<div className="form-group">
-						<label for="exampleFormControlInput1">Nombre del Juagdor</label>
+					<Row className="form-group">
+						<Col md={6}>
+							<label for="img-team">Imagen del Jugador</label>
+							<ImageUpload uploadFile={ this.uploadFile } />
+						</Col>
+						<Col md={6}>
+							{
+								img &&
+								<Image width="200" src={ img } alt={ img } responsive />
+							}
+						</Col>
+					</Row>
+					<Row className="form-group">
+						<label for="exampleFormControlInput1">Nombre del Jugador</label>
 						<input 
 							type="text"
 							name="name"
@@ -100,8 +113,8 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="Nombre del jugador"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Apellido del Juagador</label>
 						<input 
 							type="text"
@@ -112,8 +125,8 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="apellido del jugador"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Nick del Juagdor</label>
 						<input 
 							type="text"
@@ -124,8 +137,8 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="nick del jugador"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlSelect1">Seleciona un Rol</label>
 						<select name="rol" 
 							onChange={this.handleChange} 
@@ -137,9 +150,9 @@ class EditPlayer extends Component{
 							<option>Tirador Selecto</option>
 							<option>Francotirador</option>
 						</select>
-					</div>
+					</Row>
 					<legend>Equipamiento</legend>
-					<div className="form-group">
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Primaria</label>
 						<input 
 							type="text"
@@ -150,8 +163,8 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="réplica primaria"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Secundaria</label>
 						<input 
 							type="text"
@@ -162,8 +175,8 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="réplica secundaria"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Extras</label>
 						<input 
 							type="text"
@@ -174,7 +187,7 @@ class EditPlayer extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="granada, mina, ...."
 						/>
-					</div>
+					</Row>
 					<button 
 						type="button" 
 						onClick={this.handleClick} 

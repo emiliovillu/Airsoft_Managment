@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { addTeam } from '../services/api'
 import  SimpleForm  from '../components/SimpleForm'
+import ImageUpload from '../components/ImageUpload'
+import { Row, Col, Image } from 'react-bootstrap'
+
+import axios from 'axios'
 
 class RegisterTeam extends Component{
   
@@ -21,6 +25,14 @@ class RegisterTeam extends Component{
 			[e.target.name]: e.target.value
 		})
 	}
+
+	uploadFile = async file => {
+    let data = new FormData()
+    data.append('file', file)
+    
+    const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+    this.setState({ logo: imageLink })
+  }
   
 	handleClick(){
 		this.setState({
@@ -39,22 +51,24 @@ class RegisterTeam extends Component{
 	}
 
 	render() {
+		const { logo } = this.state
 		return(
-			<div>
+			<div className="registerTeam">
 				<legend>REGISTRA TU EQUIPO</legend>
 				<form>
-					<div className="form-group">
-						<label for="img-team">Logo del Equipo</label>
-						<input 
-							type="file"
-							name="logo"
-							onChange={this.handleChange} 
-							value={this.state.logo} 
-							className="form-control-file" 
-							id="img-team"
-						/>
-					</div>
-					<div className="form-group">
+					<Row className="form-group">
+						<Col md={6}>
+							<label for="img-team">Logo del Equipo</label>
+							<ImageUpload uploadFile={ this.uploadFile } />
+						</Col>
+						<Col md={6}>
+							{
+								logo &&
+								<Image width="300" src={ logo } alt={logo} responsive />
+							}
+						</Col>
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Nombre del Equipo</label>
 						<input 
 							type="text"
@@ -65,7 +79,7 @@ class RegisterTeam extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="Nombre del Equipo"
 						/>
-					</div>
+					</Row>
 					<div className="form-group">
 						<label for="exampleFormControlInput1">Cuartel General del Equipo</label>
 						<SimpleForm onLatLng={(latLng, address) => {

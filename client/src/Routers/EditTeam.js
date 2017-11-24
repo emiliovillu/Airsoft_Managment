@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { getTeamById ,editTeamById } from '../services/api'
+import { Row, Col, Image } from 'react-bootstrap'
 import  SimpleForm  from '../components/SimpleForm'
+import ImageUpload from '../components/ImageUpload'
+import axios from 'axios'
 
 class EditTeam extends Component{
   
@@ -20,9 +23,10 @@ class EditTeam extends Component{
 	upTeam(id){
 		getTeamById(id)
 			.then(response => {
+				console.log(response)
 				this.setState({
 					name: response.name,
-					logo: response.log,
+					logo: response.logo,
 					location: response.location
 				})
 			})
@@ -42,9 +46,6 @@ class EditTeam extends Component{
 			logo: this.state.logo, 
 			name: this.state.name, 
 			location: this.state.location})
-			// .then(this.setState({
-			// 	button : 'Crear mi equipo'
-			// }))
 			.then(() => {
 				this.props.history.push(`/team/${id}`)
 			})
@@ -55,22 +56,33 @@ class EditTeam extends Component{
 		this.upTeam(id)
 	}
 
+	uploadFile = async file => {
+		let data = new FormData()
+		data.append('file', file)
+		
+		const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+		this.setState({ logo: imageLink })
+	}
+
 	render() {
+		const { logo } = this.state
+		console.log(logo)
 		return(
 			<div>
 				<form>
-					<div className="form-group">
+					<Row className="form-group">
+					<Col xs={6} md={6}>
 						<label for="img-team">Logo del Equipo</label>
-						<input 
-							type="file"
-							name="logo"
-							onChange={this.handleChange} 
-							value={this.state.logo} 
-							className="form-control-file" 
-							id="img-team"
-						/>
-					</div>
-					<div className="form-group">
+						<ImageUpload uploadFile={ this.uploadFile } />
+						</Col>
+						<Col xs={6} md={6}>	
+						{
+							logo &&
+							<Image width="300" src={ logo } alt={ logo } responsive />
+						}
+						</Col>
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Nombre del Equipo</label>
 						<input 
 							type="text"
@@ -81,13 +93,13 @@ class EditTeam extends Component{
 							id="exampleFormControlInput1" 
 							placeholder="Nombre del Equipo"
 						/>
-					</div>
-					<div className="form-group">
+					</Row>
+					<Row className="form-group">
 						<label for="exampleFormControlInput1">Cuartel General del Equipo</label>
 						<SimpleForm onLatLng={(latLng, address) => {
 							this.setState({location: latLng})
 						}}/>
-					</div>
+					</Row>
 					<button 
 						type="button" 
 						onClick={this.handleClick} 

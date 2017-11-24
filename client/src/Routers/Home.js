@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row }  from 'react-bootstrap'
+import { Grid, Row, Image }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import  {listTeams}  from '../services/api'
 import LinkMapModal from '../components/LinkMapModal'
@@ -30,6 +30,7 @@ class Home extends Component {
 		// const nameTeam = this.state.teams.length&& this.state.teams[1].name
 		// console.log(nameTeam)
 		// console.log(members)
+		
 		return(
      
 			<Grid>
@@ -41,7 +42,8 @@ class Home extends Component {
           		<div className="jumbotron teams">
           			<Link id="lista" to={`/team/${team._id}`}>
           				<h1 className="name_team">{team.name}</h1>               
-          			</Link>
+          				</Link>
+          				<Image width="500" src={ team.logo } alt={team.logo} responsive />
           			<ul>
           				{
           					team.members.map((member, i) => {

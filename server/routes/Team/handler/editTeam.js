@@ -4,7 +4,7 @@ function editTeam (req, res) {
   const { teamID } = req.params
   console.log(teamID)
   const { logo, name, location } = req.body
-  console.log(location, name, teamID, 'editteam')
+  console.log(location, logo, name, teamID, 'editteam')
   return Team.findByIdAndUpdate(teamID, { logo, name, location})
     .then( response => res.status(200).json({ msg: `team w/ id ${teamID} updated properly` }))
     .catch((error) => console.log(error))

@@ -57,6 +57,7 @@ class Team extends Component{
 								<h1 className="name_team">{this.state.name}</h1>
 							</Link>
 							<Col xs={12} sm={12} md={12}>
+								<img width="300" src={this.state.logo} alt={this.state.logo}/>
 								<ul className="list-unstyled">
 									{
 										this.state.members.length && 
@@ -72,7 +73,6 @@ class Team extends Component{
             				})
 									}
 								</ul>
-								{/*<img width="210" src={malagaUrl} alt=""/>*/}
 							</Col>
 							<Col xs={12} sm={12} md={12}>
 								<Link id="lista" to={`/team/${this.state._id}/editteam`}>

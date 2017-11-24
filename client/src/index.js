@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
-console.log(process.env)
+import './styles/common.css'
 
 ReactDOM.render(
 	<BrowserRouter>
