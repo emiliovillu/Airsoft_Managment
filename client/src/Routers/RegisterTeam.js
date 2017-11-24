@@ -3,8 +3,9 @@ import { addTeam } from '../services/api'
 import  SimpleForm  from '../components/SimpleForm'
 import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
-
 import axios from 'axios'
+
+const { REACT_APP_API_SERVER } = process.env
 
 class RegisterTeam extends Component{
   
@@ -30,7 +31,7 @@ class RegisterTeam extends Component{
     let data = new FormData()
     data.append('file', file)
     
-    const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+    const { data: { imageLink } } = await axios.post(`${REACT_APP_API_SERVER}/upload`,data)      
     this.setState({ logo: imageLink })
   }
   

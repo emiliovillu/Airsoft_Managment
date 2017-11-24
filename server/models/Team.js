@@ -7,23 +7,23 @@ const TeamSchema = new Schema({
   logo: String,
   location: {lat: Number, lng: Number},
   members: [ 
-  { 
-    name: String,
-    lastName: String,
-    nick: String,
-    rol: String,
-    img: String,
-    equipment: {
-      primary: String,
-      secondary: String,
-      extras: String
-    },
-    stats: {
-      eliminations: Number,
-      dead: Number
-    }
-  } 
-    ] 
+    { 
+      name: String,
+      lastName: String,
+      nick: String,
+      rol: String,
+      img: String,
+      equipment: {
+        primary: String,
+        secondary: String,
+        extras: String
+      },
+      stats: {
+        eliminations: Number,
+        dead: Number
+      }
+    } 
+  ] 
 })
  
 
