@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col, Jumbotron, Image }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import GraphsStats from '../components/GraphsStats'
 import { getPlayerByIdInTeam, removePlayerByIdInTeam } from '../services/api'
 import '../styles/DetailPlayer.css'
 
@@ -61,14 +62,27 @@ class Player extends Component {
 	}
 
 	render() {
+		const {teamID, memberID} = this.props.match.params
 		return(
 			<Grid>
 				<Row>
 					{
 						this.state.nick &&
-			
-						<Col xs={12} sm={6} md={12}>
-							<div className="jumbotron">
+					
+					<Col xs={12} sm={6} md={12}>
+						<div className="jumbotron">
+							<div max width="200">
+								<Col xs={12} md={6}>
+									<Link to={`/team/${teamID}`}>
+										<button>Volver al Equipo</button>
+									</Link>
+									<Image width="300" src={ this.state.img } alt={this.state.img} responsive />
+									<Link to={`/team/${teamID}/player/${memberID}/statsplayer`}>
+										<button>Ver Estadisticas</button>
+									</Link>
+								</Col>
+							</div>
+							<Col xs={12} md={6}>
 								<h1>{this.state.nick}</h1>
 								<h3>NOMBRE</h3>
 								<p>{this.state.name}</p>
@@ -82,7 +96,7 @@ class Player extends Component {
 										<div className="panel-heading" role="tab" id="headingOne">
 											<h4 className="panel-title">
 												<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						REPLICA PRIMARIA <img src="http://localhost:3005/img/rifle.png" alt=""/>
+								REPLICA PRIMARIA <img src="http://localhost:3005/img/rifle.png" alt=""/>
 												</a>
 											</h4>
 										</div>
@@ -96,7 +110,7 @@ class Player extends Component {
 										<div className="panel-heading" role="tab" id="headingTwo">
 											<h4 className="panel-title">
 												<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						REPLICA SECUNDARIA <img src="http://localhost:3005/img/pistola.png" alt=""/> 
+								REPLICA SECUNDARIA <img src="http://localhost:3005/img/pistola.png" alt=""/> 
 												</a>
 											</h4>
 										</div>
@@ -110,7 +124,7 @@ class Player extends Component {
 										<div className="panel-heading" role="tab" id="headingThree">
 											<h4 className="panel-title">
 												<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
+								EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
 												</a>
 											</h4>
 										</div>
@@ -121,24 +135,22 @@ class Player extends Component {
 										</div>
 									</div>
 								</div>
-								<button 
-									onClick={this.handleClickRemove} 
-									className="btn btn-danger btn-lg" 
-									role="button">
-						Cargarse este Bastardo!!
-								</button>
-								<button
-									onClick={this.handleClickEdit} 
-									className="btn btn-warning btn-lg" 
-									role="button">
+							</Col>
+							<button 
+								onClick={this.handleClickRemove} 
+								className="btn btn-danger btn-lg" 
+								role="button">
+								Cargarse este Bastardo!!
+							</button>
+							<button
+								onClick={this.handleClickEdit} 
+								className="btn btn-warning btn-lg" 
+								role="button">
 						Editar este Bastardo!!
-								</button>
-							</div>
-						</Col>
-					}
-					<Col xs={12} md={6}>
-						<Image width="200" src={ this.state.img } alt={this.state.img} responsive />
+							</button>
+						</div>
 					</Col>
+					}
 				</Row>
 			</Grid>
 		)

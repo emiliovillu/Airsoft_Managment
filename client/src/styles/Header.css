@@ -1,26 +1,22 @@
 #navbar{
-  color: rgb(4, 66, 4);
+  color:#253F1D;
 
 }
 
-div.navbar-header{
-  z-index: 2;
-  top: 0;
-  opacity: 0.7;
-}
+
 
 #navbar1 {
-  /* background-color: rgb(4, 65, 4) */
-  background-image: url('https://fsb.zobj.net/crop.php?r=vNkJ6wV8CsftgA8vco14VfyaNU4DWyAk9SVwWeglFVT7wuXkEx-RhFXoY8HJv4FrVUBxZLQv2V-zXvLUmuqBBcJ3D46xaKiyakWHYWSWIVPzafCwA-uu9lnySbZ9gtIWhQwuZgU0I8VA0QJUu0G6QFiQE4eB1xEQTIV09A');
+  background-color: #596F62
+  
   
 }
 
 
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
-  background-image: url('https://fsb.zobj.net/crop.php?r=vNkJ6wV8CsftgA8vco14VfyaNU4DWyAk9SVwWeglFVT7wuXkEx-RhFXoY8HJv4FrVUBxZLQv2V-zXvLUmuqBBcJ3D46xaKiyakWHYWSWIVPzafCwA-uu9lnySbZ9gtIWhQwuZgU0I8VA0QJUu0G6QFiQE4eB1xEQTIV09A');
+  
   background-size: cover;
   background-repeat: no-repeat;
-  color: rgb(192, 15, 15);
+  color: #000000;
   font-size: 20px;
 }
 

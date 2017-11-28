@@ -4,6 +4,7 @@ import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
 
 import axios from 'axios'
+const { REACT_APP_API_SERVER } = process.env
 
 class EditPlayer extends Component{
   
@@ -63,7 +64,7 @@ class EditPlayer extends Component{
 				lastName: this.state.lastName,
 				nick: this.state.nick,
 				rol: this.state.rol,
-				img: this.state.img, 
+				img: this.state.img, 							
 				primary: this.state.primary,
 				secondary: this.state.secondary,
 				extras: this.state.extras,
@@ -78,7 +79,7 @@ class EditPlayer extends Component{
     let data = new FormData()
     data.append('file', file)
     
-    const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+    const { data: { imageLink } } = await axios.post(`${REACT_APP_API_SERVER}/upload`,data)      
     this.setState({ img: imageLink })
   }	
       

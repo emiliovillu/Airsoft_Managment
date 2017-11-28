@@ -85,7 +85,13 @@ export const editTeamById = (id, params) => {
 		})
 }
 
-
+export const addStats = (teamID, memberID, params) => {
+	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}/addstatsplayer`
+	return axios.post(url, params)
+		.then(function(response){
+			return response
+		})
+}
 
 //  url --> crear members
 // ${REACT_APP_API_SERVER}/api/users/:userId/teams/:teamId/members

@@ -4,6 +4,7 @@ import { Row, Col, Image } from 'react-bootstrap'
 import  SimpleForm  from '../components/SimpleForm'
 import ImageUpload from '../components/ImageUpload'
 import axios from 'axios'
+const { REACT_APP_API_SERVER } = process.env
 
 class EditTeam extends Component{
   
@@ -60,7 +61,7 @@ class EditTeam extends Component{
 		let data = new FormData()
 		data.append('file', file)
 		
-		const { data: { imageLink } } = await axios.post('http://localhost:3005/upload',data)      
+		const { data: { imageLink } } = await axios.post(`${REACT_APP_API_SERVER}/upload`,data)      
 		this.setState({ logo: imageLink })
 	}
 

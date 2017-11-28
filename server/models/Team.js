@@ -20,7 +20,8 @@ const TeamSchema = new Schema({
       },
       stats: {
         eliminations: Number,
-        dead: Number
+        dead: Number,
+        date: Date
       }
     } 
   ] 
