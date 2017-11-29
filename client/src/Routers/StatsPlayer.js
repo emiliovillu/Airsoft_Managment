@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import GraphsStats from '../components/GraphsStats'
 import { getPlayerByIdInTeam, addStats } from '../services/api'
-import '../styles/DetailPlayer.css'
+import '../styles/StatsPlayer.css'
 
 class Player extends Component {
 	constructor(props){
@@ -16,8 +16,8 @@ class Player extends Component {
 			nick: '',
 			rol: '',
 			img: '',
-			stats: '',
-			date: ''
+			stats: {dead: -1, eliminations: -1 },
+			date:  ''
 		}
 		this.handleClick = this.handleClick.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -70,7 +70,8 @@ class Player extends Component {
 
 	render() {
 		const {teamID} = this.props.match.params
-		const date_game = moment(this.state.date.toString()).format('DD MMM YYYY')
+		const date_game = this.state.date ? moment(this.state.date.toString()).format('DD MMM YYYY') : moment().format('DD MMM YYYY').toString()
+		console.log(this.state.date)
 		return(
 			<Grid>
 				<Row>
@@ -96,7 +97,7 @@ class Player extends Component {
 									<p>{this.state.rol}</p>
 								</Col>
 								<Col xs={12} md={6}>
-									<form className="form-group has-success">
+									<form className="has-success">
 										<legend>Introduce las estadísticas</legend>
 										<div class="form-group">
 											<label for="exampleInputEmail1">Fecha de partida</label>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getPlayerByIdInTeam, editPlayerById } from '../services/api'
 import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
+import '../styles/EditPlayer.css'
 
 import axios from 'axios'
 const { REACT_APP_API_SERVER } = process.env
@@ -19,7 +20,7 @@ class EditPlayer extends Component{
 			primary: '',
 			secondary: '',
 			extras: '',
-			button: 'Editar mi Jugador'
+			button: 'Editar Jugador'
 		}
 		this.handleClick = this.handleClick.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -88,18 +89,18 @@ class EditPlayer extends Component{
 		const { img } = this.state
 		console.log(img)
 		return(
-			<div>
-				<legend>Crear tu Jugador</legend>
+			<div className="edit-player">
+				<legend>Editar Jugador</legend>
 				<form>
 					<Row className="form-group">
 						<Col md={6}>
 							<label for="img-team">Imagen del Jugador</label>
 							<ImageUpload uploadFile={ this.uploadFile } />
 						</Col>
-						<Col md={6}>
+						<Col md={6} className="text-center">
 							{
 								img &&
-								<Image width="200" src={ img } alt={ img } responsive />
+								<img className=" img-responsive img-thumbnail" src={ img } alt={ img } />
 							}
 						</Col>
 					</Row>
@@ -116,7 +117,7 @@ class EditPlayer extends Component{
 						/>
 					</Row>
 					<Row className="form-group">
-						<label for="exampleFormControlInput1">Apellido del Juagador</label>
+						<label for="exampleFormControlInput1">Apellido del Jugador</label>
 						<input 
 							type="text"
 							name="lastName"
@@ -128,7 +129,7 @@ class EditPlayer extends Component{
 						/>
 					</Row>
 					<Row className="form-group">
-						<label for="exampleFormControlInput1">Nick del Juagdor</label>
+						<label for="exampleFormControlInput1">Nick del Jugador</label>
 						<input 
 							type="text"
 							name="nick"
@@ -194,6 +195,7 @@ class EditPlayer extends Component{
 						onClick={this.handleClick} 
 						className="btn btn-danger btn-lg">
 						{this.state.button}
+						<span className="glyphicon glyphicon-ok"></span>
 					</button>
 				</form>
 			</div>

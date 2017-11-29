@@ -6,6 +6,7 @@ const GraphsStats = (props) => {
 	return(
 		React.createElement(AmCharts.React, {
 			style: {
+				background: 'white',
 				width: '100%',
 				height: '400px'
 			},

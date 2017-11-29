@@ -71,6 +71,7 @@ class EditTeam extends Component{
 		return(
 			<div>
 				<form>
+				<legend>Editar Equipo</legend>
 					<Row className="form-group">
 					<Col xs={6} md={6}>
 						<label for="img-team">Logo del Equipo</label>
@@ -106,6 +107,7 @@ class EditTeam extends Component{
 						onClick={this.handleClick} 
 						className="btn btn-danger btn-lg">
 						{this.state.button}
+						<span className="glyphicon glyphicon-ok"></span>
 					</button>
 				</form>
 			</div>

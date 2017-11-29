@@ -28,24 +28,24 @@ class Home extends Component {
 	
 		return(
      
-			<Grid>
+			<Grid className="home">
 				<Row>
 					{
 						this.state.teams.length &&
           	this.state.teams.map((team,i) => {
           	return (
           			<Col xs={12} md={4}>
-							<div className="jumbotron teams">
-								<div className="container-name">	
+          				<div className="jumbotron teams">
+          					<div className="container-name">	
           			<Link id="lista" to={`/team/${team._id}`}>
           				<h1 id="name_team">{team.name}</h1>               
-									</Link>
-								</div>
-								<div className="container-info">
-									<div className="container-info-img">
-										<Image className="img-profile" src={ team.logo } alt={team.logo} responsive />
-									</div>
-									<ul>
+          						</Link>
+          					</div>
+          					<div className="container-info">
+          						<div className="container-info-img">
+          							<img className="img-profile img-responsive img-thumbnail" src={ team.logo } alt={team.logo} />
+          						</div>
+          						<ul>
           				{
           					team.members.map((member, i) => {
           						return(
@@ -56,11 +56,12 @@ class Home extends Component {
           						)
           					})
           						}
-								</ul>
-								</div>
-								<div className="container-map">
-									<LinkMapModal latLng={team.location}/>
-								</div>
+          						</ul>
+          					</div>
+          					<div className="container-map">
+          						<h4>Cuartel General</h4>
+          						<LinkMapModal latLng={team.location}/>
+          					</div>
           				</div>
           			</Col>
           	)

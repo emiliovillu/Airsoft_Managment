@@ -1,0 +1,15 @@
+.has-success legend {
+  color: black;
+}
+
+
+.has-success .form-group{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #1C3144;
+}
+
+.jumbotron{
+  background-color: #7EA16B;
+  color: black;
+}

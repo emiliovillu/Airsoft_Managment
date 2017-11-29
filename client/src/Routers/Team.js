@@ -3,7 +3,7 @@ import { Grid, Row, Col }  from 'react-bootstrap'
 import LinkMapModal from '../components/LinkMapModal'
 import { Link } from 'react-router-dom'
 import { getTeamById, removeTeamById } from '../services/api'
-import '../styles/Home.css'
+import '../styles/Team.css'
 
 class Team extends Component{
 	constructor(props){
@@ -49,15 +49,17 @@ class Team extends Component{
 	render(){
 
 		return(
-			<Grid>
+			<Grid className="team">
 				<Row>
-					<Col xs={12} sm={12} md={12}>
+					<Col xs={12} sm={12} md={12} className="ficha-team">
 						<div className="jumbotron teams">
 							<Link id="lista" to={`/player/${this.state._id}`}>
 								<h1 className="name_team">{this.state.name}</h1>
 							</Link>
-							<Col xs={12} sm={12} md={12}>
-								<img width="300" src={this.state.logo} alt={this.state.logo}/>
+							<Col xs={12} sm={3} md={6} className="list">
+								<img className="img-responsive img-thumbnail"  src={this.state.logo} alt={this.state.logo}/>
+							</Col>
+							<Col xs={12} sm={3} md={6}>	
 								<ul className="list-unstyled">
 									{
 										this.state.members.length && 
@@ -80,7 +82,7 @@ class Team extends Component{
 										type="button" 
 										className="btn btn-danger btn-lg">
 										Editar Equipo
-										<span class="glyphicon glyphicon-pencil"></span>
+										<span className="glyphicon glyphicon-pencil"></span>
 									</button>
 								</Link>
 								<button 
@@ -88,19 +90,19 @@ class Team extends Component{
 									type="button" 
 									className="btn btn-danger btn-lg">
 									Eliminar Equipo
-									<span class="glyphicon glyphicon-trash"></span>
+									<span className="glyphicon glyphicon-trash"></span>
 								</button>
 								<Link id="lista" to={`/team/${this.state._id}/player/createPlayer`}>
 									<button 
 										type="button" 
 										className="btn btn-warning btn-lg">
 									Añadir Jugador
-										<span class="glyphicon glyphicon-pencil"></span>
+										<span className="glyphicon glyphicon-plus"></span>
 									</button>
 								</Link>	
 							</Col>
 							<div className="clearfix"></div>
-							<h3>Cuartel General del Equipo</h3>
+							<h3>Cuartel General del Equipo :</h3>
 							<LinkMapModal latLng={this.state.location}/>
 						</div>
 					</Col>

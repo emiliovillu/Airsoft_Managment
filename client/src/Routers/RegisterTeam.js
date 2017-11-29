@@ -4,7 +4,7 @@ import  SimpleForm  from '../components/SimpleForm'
 import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
 import axios from 'axios'
-
+import '../styles/RegisterTeam.css'
 const { REACT_APP_API_SERVER } = process.env
 
 class RegisterTeam extends Component{

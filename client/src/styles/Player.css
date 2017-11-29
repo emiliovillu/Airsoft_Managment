@@ -1,0 +1,18 @@
+.image{
+  max-height: 300px;
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+.stats{
+  margin-top: 20px;
+}
+
+.profile .jumbotron{
+  background-color: #7EA16B;
+}
+.graphism{
+  background: white;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-radius: 4px;
+}

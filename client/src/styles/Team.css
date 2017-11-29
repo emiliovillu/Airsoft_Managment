@@ -1,0 +1,32 @@
+.name_team{
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+img{
+  max-height: 90%;
+  max-width: 90%;
+  margin-bottom: 30px;
+}
+
+.team li {
+  font-size: 20px;
+}
+
+.team h4{
+  font-size: 30px;
+}
+.team h3{
+  color:white;
+}
+
+.btn-warning{
+  float: right;
+}
+.btn{
+  margin-right: 40px;
+}
+.teams{
+  padding-top: 20px;
+}
