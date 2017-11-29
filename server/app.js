@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-// const passport = require('./config/passport')
+const passport = require('./config/passport')
 
 const routesTeam = require('./routes/Team')
 const routesPlayer = require('./routes/Player')
@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use( cors() )
 app.use(express.static('public'))
 
-// app.use( passport.initialize() )
+app.use( passport.initialize() )
 
 app.use(routesTeam)
 app.use(routesPlayer)
