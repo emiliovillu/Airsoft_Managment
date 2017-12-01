@@ -13,6 +13,7 @@ class Home extends Component {
 		}
     
 	}
+
   
 	componentDidMount(){
 		listTeams()

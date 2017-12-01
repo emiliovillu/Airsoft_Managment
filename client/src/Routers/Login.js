@@ -60,7 +60,7 @@ class Register extends Component{
 			<form className="login">
 				<div className="form-group">
 					<label for="exampleInputEmail1">Nombre de Usuario</label>
-					<input onChange={this.handleChange} name="username" type="text" className="form-control" id="exampleInputEmail1" placeholder="Username"/>
+					<input onChange={this.handleChange} name="username" type="text" className="form-control" id="exampleInputEmail1" placeholder="Username" autofocus="true"/>
 				</div>
 				<div className="form-group">
 					<label for="exampleInputPassword1">Password</label>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { getToken, removeToken } from '../services/storageService'
 import { getInfoUser } from '../services/api'
+import swal from 'sweetalert2'
 import '../styles/Header.css'
 
 
@@ -28,6 +29,18 @@ class Header extends Component {
 
 	handleClick = () => {
 		removeToken()
+				swal({
+			title: 'Hasta pronto!!',
+			text: 'Desconectando de la base de datos del Pentágono!!!',
+			timer: 5000,
+			onOpen: () => {
+				swal.showLoading()
+			}
+		}).then((result) => {
+			if (result.dismiss === 'timer') {
+				console.log('I was closed by the timer')
+			}
+		})
 		this.setState({
 			fireRedirect: true
 		})
@@ -56,10 +69,10 @@ class Header extends Component {
 						<div className="collapse navbar-collapse" id="navbar1">
 							<ul className="nav navbar-nav">
 								<li>
-									<a href="/teams">HOME</a>
+									<a href="/">HOME</a>
 								</li>
 								<li>
-									<a href="/">LOGIN</a>
+									<a href="/login">LOGIN</a>
 								</li>
 								<li>
 									<a href="/register">REGISTRATE</a>
@@ -70,7 +83,7 @@ class Header extends Component {
 							</ul>
 							{
 								getToken() &&
-								<button onClick={this.handleClick} className="btn btn-danger" id="logout">LOGOUT</button>
+								<button onClick={this.handleClick} className="btn btn-danger" id="logout">LOGOUT <span className="glyphicon glyphicon-log-out"></span></button>
 							}
 						</div>
 					</div>

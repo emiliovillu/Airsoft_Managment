@@ -1,3 +1,9 @@
+body{
+  background-image: url('http://www.esnporto.org/sites/default/files/styles/zoom/public/events/images/airsoft.jpg?itok=yL1dM7i4');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .registerTeam label {
   color: white;
   font-size: 20px;

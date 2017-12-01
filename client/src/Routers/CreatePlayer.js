@@ -82,7 +82,7 @@ class CreatePlayer extends Component{
 						</Col>
 					</Row>
 					<Row className="form-group">
-						<label for="exampleFormControlInput1">Nombre del Juagador</label>
+						<label for="exampleFormControlInput1">Nombre del Jugador</label>
 						<input 
 							type="text"
 							name="name"
@@ -94,7 +94,7 @@ class CreatePlayer extends Component{
 						/>
 					</Row>
 					<Row className="form-group">
-						<label for="exampleFormControlInput1">Apellido del Juagdor</label>
+						<label for="exampleFormControlInput1">Apellido del Jugador</label>
 						<input 
 							type="text"
 							name="lastName"
@@ -106,7 +106,7 @@ class CreatePlayer extends Component{
 						/>
 					</Row>
 					<Row className="form-group">
-						<label for="exampleFormControlInput1">Nick del Juagdor</label>
+						<label for="exampleFormControlInput1">Nick del Jugador</label>
 						<input 
 							type="text"
 							name="nick"
