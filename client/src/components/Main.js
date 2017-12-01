@@ -36,9 +36,9 @@ const Main = (props) => {
 							hideNavigation={ props.hideNavigation }
 							{ ...routeProps }
 						/>)} 
-					exact path='/login'
+					exact path='/'
 				/>
-				<Route exact path='/' component={Home}/>
+				<Route exact path='/teams' component={Home}/>
 				<PrivateRoute exact path='/team' component={RegisterTeam}/>
 				<PrivateRoute exact path='/team/:id/player/createPlayer' component={CreatePlayer}/>
 				<PrivateRoute exact path='/team/:teamID/player/:memberID/statsplayer' component={StatsPlayer}/>
