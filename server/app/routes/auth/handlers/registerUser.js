@@ -2,6 +2,7 @@ const User = require('../../../models/User')
 
 function registerUser(req, res) {
   const { username, password } = req.body
+  console.log(username, password)
   const account = new User({ username })
 
   User.register( account, password, (err, user) => {

@@ -3,7 +3,10 @@ import { addTeam } from '../services/api'
 import  SimpleForm  from '../components/SimpleForm'
 import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
+import { getInfoUser } from '../services/api'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import swal from 'sweetalert2'
 import '../styles/RegisterTeam.css'
 const { REACT_APP_API_SERVER } = process.env
 
@@ -13,8 +16,9 @@ class RegisterTeam extends Component{
 		super()
 		this.state = {
 			name: '',
-			logo: '',
+			logo: 'http://cdn-airsoft-management.surge.sh/img/default_profile.jpg',
 			location:'',
+			fireRedirect: false,
 			button: 'Crear mi equipo'
 		}
 		this.handleClick = this.handleClick.bind(this)
@@ -35,19 +39,39 @@ class RegisterTeam extends Component{
     this.setState({ logo: imageLink })
   }
   
-	handleClick(){
-		this.setState({
-			button: 'Creando Equipo......'
-		}, () => {
-			
-			addTeam({logo: this.state.logo, name: this.state.name, location: this.state.location})
-				.then(this.setState({
-					button : 'Crear mi equipo'
-				}))
-				.then(() => {
-					this.props.history.push('/')
-				})
+	handleClick()
+	{
+		this.setState({ button: 'Creando Equipo......' })
+	
+		addTeam({
+			logo: this.state.logo, 
+			name: this.state.name, 
+			location: this.state.location
 		})
+		.then( () => {
+			this.setState({ button : 'Crear mi equipo' })
+			return getInfoUser()
+		})		
+		.then(response => {
+			console.log(response.user.team._id)
+			const id = response.user.team._id
+			swal({
+        position: 'top-right',
+        type: 'success',
+        title: 'Your team create correctly',
+        showConfirmButton: false,
+        timer: 2000
+      })
+			this.props.history.push(`/team/${id}`)
+		})
+		
+		.catch( err => {
+			swal(
+				'Oops...',
+				'Something went wrong!',
+				'error'
+			)
+		} )
 
 	}
 
@@ -65,7 +89,7 @@ class RegisterTeam extends Component{
 						<Col md={6}>
 							{
 								logo &&
-								<Image width="300" src={ logo } alt={logo} responsive />
+								<img className="img-responsive img-thumbnail" style={{margin: "auto 25%"}} width="300" src={ logo } alt={logo} />
 							}
 						</Col>
 					</Row>
@@ -94,6 +118,7 @@ class RegisterTeam extends Component{
 						{this.state.button}
 					</button>
 				</form>
+				
 			</div>
 		)
 	}

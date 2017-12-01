@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { getAuthHeader } from '../services/authService'
 const { REACT_APP_API_SERVER } = process.env
 
 export const listTeams = () => {
-	const url =  `${REACT_APP_API_SERVER}/api/team`
-	return axios.get(url)
+	const url =  `${REACT_APP_API_SERVER}/api/teams`
+	return axios.get(url, getAuthHeader())
 		.then(response => {
 			return response.data
 		})
@@ -11,7 +12,7 @@ export const listTeams = () => {
 
 export const getTeamById = (id) => {
 	const url = `${REACT_APP_API_SERVER}/api/team/${id}`
-	return axios.get(url)
+	return axios.get(url, getAuthHeader())
 		.then(response => {
 			return response.data
 		})
@@ -19,7 +20,7 @@ export const getTeamById = (id) => {
 
 export const getPlayers = (id) => {
 	const url = `${REACT_APP_API_SERVER}/api/players/${id}`
-	return axios.get(url)
+	return axios.get(url, getAuthHeader())
 		.then(response => {
 			console.log(response)
 			return response.data
@@ -28,7 +29,7 @@ export const getPlayers = (id) => {
 
 export const getPlayerByIdInTeam = (teamID, memberID) => {
 	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}`
-	return axios.get(url)
+	return axios.get(url, getAuthHeader())
 		.then(response => {
 			console.log(response)
 			return response.data
@@ -36,8 +37,8 @@ export const getPlayerByIdInTeam = (teamID, memberID) => {
 }
 
 export const addTeam = (params) => {
-	const url = `${REACT_APP_API_SERVER}/api/addteam`
-	return axios.post(url, params)
+	const url = `${REACT_APP_API_SERVER}/api/teams`
+	return axios.post(url, params, getAuthHeader())
 		.then(function(response){
 			return response
 		})
@@ -45,7 +46,7 @@ export const addTeam = (params) => {
 
 export const addPlayerById = (id, params) => {
 	const url = `${REACT_APP_API_SERVER}/api/team/${id}/addplayer`
-	return axios.post(url, params)
+	return axios.post(url, params, getAuthHeader())
 		.then(function(response){
 			return response
 		})
@@ -53,7 +54,7 @@ export const addPlayerById = (id, params) => {
 
 export const removePlayerByIdInTeam = (teamID, memberID) => {
 	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}`
-	return axios.post(url)
+	return axios.post(url, getAuthHeader())
 		.then(function(response){
 			return response
 		})
@@ -61,7 +62,7 @@ export const removePlayerByIdInTeam = (teamID, memberID) => {
 
 export const removeTeamById = (id) => {
 	const url = `${REACT_APP_API_SERVER}/api/team/${id}`
-	return axios.post(url)
+	return axios.delete(url, getAuthHeader())
 		.then(function(response){
 			return response
 		})
@@ -71,15 +72,15 @@ export const removeTeamById = (id) => {
 export const editPlayerById = (teamID, memberID, params) => {
 	console.log(teamID, memberID)
 	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}/editplayer`
-	return axios.post(url, params)
+	return axios.post(url, params, getAuthHeader())
 		.then(function(response){
 			return response
 		})
 }
 
 export const editTeamById = (id, params) => {
-	const url = `${REACT_APP_API_SERVER}/api/team/${id}/editteam`
-	return axios.post(url, params)
+	const url = `${REACT_APP_API_SERVER}/api/team/${id}`
+	return axios.put(url, params, getAuthHeader())
 		.then(function(response){
 			return response
 		})
@@ -87,11 +88,30 @@ export const editTeamById = (id, params) => {
 
 export const addStats = (teamID, memberID, params) => {
 	const url = `${REACT_APP_API_SERVER}/api/teams/${teamID}/members/${memberID}/addstatsplayer`
-	return axios.post(url, params)
+	return axios.post(url, params, getAuthHeader())
 		.then(function(response){
 			return response
 		})
 }
+
+export const registerUser = (username, password) => {
+	const url = `${REACT_APP_API_SERVER}/register`
+	return axios.post(url, {username, password}, getAuthHeader())
+		.then(function(response){
+			return response
+		})
+	
+}
+
+export const getInfoUser = () => {
+	const url = `${REACT_APP_API_SERVER}/me`
+	return axios.get(url, getAuthHeader())
+		.then(response => {
+			return response.data
+		})
+}
+
+
 
 //  url --> crear members
 // ${REACT_APP_API_SERVER}/api/users/:userId/teams/:teamId/members

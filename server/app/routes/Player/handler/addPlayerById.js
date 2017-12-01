@@ -12,7 +12,7 @@ function addPlayerById(req, res) {
       rol: rol, 
       img: img, 
       equipment: { primary: primary, secondary: secondary, extras: extras },
-      stats: { eliminations: eliminations, dead: dead, date: date }
+      stats: { eliminations: eliminations, dead: dead }
               } } }, {'new': true})
         .then( team => res.status(200).json({ team, msg: `player w/ ${name} of Team w/ id ${id} updated properly` }) )
 }

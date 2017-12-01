@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getPlayerByIdInTeam, editPlayerById } from '../services/api'
 import ImageUpload from '../components/ImageUpload'
 import { Row, Col, Image } from 'react-bootstrap'
+import swal from 'sweetalert2'
 import '../styles/EditPlayer.css'
 
 import axios from 'axios'
@@ -71,6 +72,13 @@ class EditPlayer extends Component{
 				extras: this.state.extras,
 			})
 				.then(() => {
+					swal({
+						position: 'top-right',
+						type: 'success',
+						title: 'The player has been edit correctly',
+						showConfirmButton: false,
+						timer: 2000
+					})
 					let { teamID, memberID } = this.props.match.params
 					this.props.history.push(`/team/${teamID}/player/${memberID}`)
 				})
@@ -100,7 +108,7 @@ class EditPlayer extends Component{
 						<Col md={6} className="text-center">
 							{
 								img &&
-								<img className=" img-responsive img-thumbnail" src={ img } alt={ img } />
+								<img className="img-responsive img-thumbnail" src={ img } alt={ img } />
 							}
 						</Col>
 					</Row>

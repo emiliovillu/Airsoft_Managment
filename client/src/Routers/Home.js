@@ -34,12 +34,10 @@ class Home extends Component {
 						this.state.teams.length &&
           	this.state.teams.map((team,i) => {
           	return (
-          			<Col xs={12} md={4}>
+          			<Col xs={12} md={6}>
           				<div className="jumbotron teams">
           					<div className="container-name">	
-          			<Link id="lista" to={`/team/${team._id}`}>
           				<h1 id="name_team">{team.name}</h1>               
-          						</Link>
           					</div>
           					<div className="container-info">
           						<div className="container-info-img">

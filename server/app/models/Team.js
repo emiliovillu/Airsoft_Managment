@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const collection = 'Teams'
+const collection = 'teams'
 
 const TeamSchema = new Schema({
   name: String,
@@ -19,17 +19,12 @@ const TeamSchema = new Schema({
         extras: String
       },
       stats: {
-        eliminations: Number,
-        dead: Number,
+        eliminations: { type: Number, default: -1},
+        dead: { type: Number, default: -1},
         date: Date
       }
     } 
   ] 
-})
- 
+}, { collection })
 
-
-
-
-
-module.exports = mongoose.model('Teams', TeamSchema)
+module.exports = mongoose.model('Team', TeamSchema)

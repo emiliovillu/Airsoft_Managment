@@ -7,12 +7,31 @@ import Main from './components/Main'
 
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			showHeader: true
+		}
+		
+	}
+
+	hideNavigation = () => {
+    this.setState({
+      showHeader: false
+    })
+	}
+	
+	showNavigation = () => {
+    this.setState({
+      showHeader: true
+    })
+  }
 
 	render() {
 		return (
 			<div className="container">
-				<Header />
-				<Main />
+				{ this.state.showHeader && <Header /> }
+				<Main hideNavigation={this.hideNavigation} showNavigation={this.showNavigation}/>
 				<Footer />
 			</div>
 		);

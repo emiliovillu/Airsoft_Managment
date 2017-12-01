@@ -12,6 +12,7 @@ const jwtOptions = {
 const strategy = new JwtStrategy( jwtOptions, (jwt_payload, done) => {
   console.log(jwt_payload)
   User.findById( jwt_payload.id )
+    .populate( 'team' )
     .then(user => {
       if (user) done(null, user);
       else done(null, false);

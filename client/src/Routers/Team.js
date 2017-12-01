@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row, Col }  from 'react-bootstrap'
 import LinkMapModal from '../components/LinkMapModal'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert2'
 import { getTeamById, removeTeamById } from '../services/api'
 import '../styles/Team.css'
 
@@ -37,6 +38,23 @@ class Team extends Component{
 		let { id } = this.props.match.params
 		removeTeamById(id)
 			.then(() => {
+				swal({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, delete it!'
+				}).then((result) => {
+					if (result.value) {
+						swal(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+						)
+					}
+				})
 				this.props.history.push('/')
 			})
 	}
@@ -44,6 +62,10 @@ class Team extends Component{
 	componentDidMount(){
 		let { id } = this.props.match.params
 		this.upIdTeam(id)
+	}
+
+	componentWillMount () {
+		this.props.showNavigation()
 	}
 
 	render(){

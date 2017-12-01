@@ -1,0 +1,19 @@
+
+
+.login{
+  max-width: 400px;
+  margin: 20% auto;
+}
+
+.login > button{
+  width: 100%;
+}
+.login .form-group{
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.login > a{
+  text-align: center;
+  color: white;
+}

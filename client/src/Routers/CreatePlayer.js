@@ -3,6 +3,8 @@ import { Row, Col, Image } from 'react-bootstrap'
 import ImageUpload from '../components/ImageUpload'
 import { addPlayerById } from '../services/api'
 import axios from 'axios'
+import swal from 'sweetalert2'
+import '../styles/CreatePlayer.css'
 const { REACT_APP_API_SERVER } = process.env
 
 class CreatePlayer extends Component{
@@ -14,7 +16,7 @@ class CreatePlayer extends Component{
 			lastName: '',
 			nick: '',
 			rol: '',
-			img: '',
+			img: 'http://cdn-airsoft-management.surge.sh/img/default_profile.jpg',
 			primary: '',
 			secondary: '',
 			extras: '',
@@ -42,6 +44,13 @@ class CreatePlayer extends Component{
 				secondary: this.state.secondary,
 				extras: this.state.extras,
 			}).then(() => {
+				swal({
+					position: 'top-right',
+					type: 'success',
+					title: 'Player create correctly',
+					showConfirmButton: false,
+					timer: 2000
+				})
 				this.props.history.push(`/team/${this.props.match.params.id}`)
 			})
 		})
@@ -68,7 +77,7 @@ class CreatePlayer extends Component{
 						<Col xs={6} md={6}>	
 						{
 							img &&
-							<Image width="300" src={ img } alt={img} responsive />
+							<img className="img-responsive img-thumbnail img-player" src={ img } alt={img}  />
 						}
 						</Col>
 					</Row>

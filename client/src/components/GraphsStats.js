@@ -30,13 +30,13 @@ const GraphsStats = (props) => {
 					'points': props.eliminations,
 					'color': '#31B404',
           
-					'bullet': 'http://localhost:3005/img/objetivo.png'
+					'bullet': 'http://cdn-airsoft-management.surge.sh/img/objetivo.png'
 				}, {
 					'name': 'Muertes',
 					'points': props.dead,
 					'color': '#DF0101',
           
-					'bullet': 'http://localhost:3005/img/dead.png'
+					'bullet': 'http://cdn-airsoft-management.surge.sh/img/dead.png'
 				},],
 				'valueAxes': [{
 					'maximum': 20,

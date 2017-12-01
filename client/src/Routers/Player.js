@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row, Col, Jumbotron, Image }  from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import GraphsStats from '../components/GraphsStats'
+import swal from 'sweetalert2'
 import { getPlayerByIdInTeam, removePlayerByIdInTeam } from '../services/api'
 import '../styles/Player.css'
 
@@ -46,11 +47,29 @@ class Player extends Component {
 		let { teamID, memberID } = this.props.match.params
 		removePlayerByIdInTeam(teamID, memberID)
 			.then(() => {
+				swal({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, delete it!'
+				}).then((result) => {
+					if (result.value) {
+						swal(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+						)
+					}
+				})
 				this.props.history.push(`/team/${this.props.match.params.teamID}`)
 			})
 	}
 
 	handleClickEdit () {
+		
 		let { teamID, memberID } = this.props.match.params
 		this.props.history.push(`/team/${teamID}/player/${memberID}/editplayer`)
 	}
@@ -101,7 +120,7 @@ class Player extends Component {
 											<div className="panel-heading" role="tab" id="headingOne">
 												<h4 className="panel-title">
 													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								REPLICA PRIMARIA <img src="http://localhost:3005/img/rifle.png" alt=""/>
+								REPLICA PRIMARIA <img src="http://cdn-airsoft-management.surge.sh/img/rifle.png" alt=""/>
 													</a>
 												</h4>
 											</div>
@@ -115,7 +134,7 @@ class Player extends Component {
 											<div className="panel-heading" role="tab" id="headingTwo">
 												<h4 className="panel-title">
 													<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								REPLICA SECUNDARIA <img src="http://localhost:3005/img/pistola.png" alt=""/> 
+								REPLICA SECUNDARIA <img src="http://cdn-airsoft-management.surge.sh/img/pistola.png" alt=""/> 
 													</a>
 												</h4>
 											</div>
@@ -129,7 +148,7 @@ class Player extends Component {
 											<div className="panel-heading" role="tab" id="headingThree">
 												<h4 className="panel-title">
 													<a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								EXTRAS <img src="http://localhost:3005/img/granada.png" alt=""/> 
+								EXTRAS <img src="http://cdn-airsoft-management.surge.sh/img/granada.png" alt=""/> 
 													</a>
 												</h4>
 											</div>

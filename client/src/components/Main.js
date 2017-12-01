@@ -3,27 +3,52 @@ import {Switch, Route} from 'react-router-dom'
 import Home from '../Routers/Home'
 import Team from '../Routers/Team'
 import Player from '../Routers/Player'
-// import DetailPlayers from '../Routers/DetailPlayers'
 import RegisterTeam from '../Routers/RegisterTeam'
 import CreatePlayer from '../Routers/CreatePlayer'
 import EditPlayer from '../Routers/EditPlayer'
 import EditTeam from '../Routers/EditTeam'
 import StatsPlayer from '../Routers/StatsPlayer'
+import Register from '../Routers/Register'
+import Login from '../Routers/Login'
+import PrivateRoute from '../components/PrivateRoutes'
 
-const Main = () => (
-  
-	<div className="Main">
-		<Switch>
-			<Route exact path='/' component={Home}/>
-			<Route exact path='/register' component={RegisterTeam}/>
-			<Route exact path='/team/:id/player/createPlayer' component={CreatePlayer}/>
-			<Route exact path='/team/:teamID/player/:memberID/statsplayer' component={StatsPlayer}/>
-			<Route exact path='/team/:id/editteam' component={EditTeam}/>
-			<Route exact path='/team/:teamID/player/:memberID/editplayer' component={EditPlayer}/>
-			<Route exact path='/team/:teamID/player/:memberID' component={Player}/>
-			<Route exact path='/team/:id' component={Team}/>
-		</Switch> 
-	</div>
-)
+
+
+const Main = (props) => {
+	console.log(props)
+	
+
+	return(
+		<div className="Main">
+		
+			<Switch>
+				<Route 
+					render={ routeProps => (
+						<Register 
+							hideNavigation={ props.hideNavigation }
+							{ ...routeProps }
+						/>)} 
+					exact path='/register'
+				/>
+				<Route 
+					render={ routeProps => (
+						<Login 
+							hideNavigation={ props.hideNavigation }
+							{ ...routeProps }
+						/>)} 
+					exact path='/login'
+				/>
+				<Route exact path='/' component={Home}/>
+				<PrivateRoute exact path='/team' component={RegisterTeam}/>
+				<PrivateRoute exact path='/team/:id/player/createPlayer' component={CreatePlayer}/>
+				<PrivateRoute exact path='/team/:teamID/player/:memberID/statsplayer' component={StatsPlayer}/>
+				<PrivateRoute exact path='/team/:id/editteam' component={EditTeam}/>
+				<PrivateRoute exact path='/team/:teamID/player/:memberID/editplayer' component={EditPlayer}/>
+				<PrivateRoute exact path='/team/:teamID/player/:memberID' component={Player}/>
+				<PrivateRoute exact path='/team/:id' component={Team} showNavigation={props.showNavigation}/>
+			</Switch> 
+		</div>
+	)
+}
 
 export default Main

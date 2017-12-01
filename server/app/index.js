@@ -6,11 +6,10 @@ const cors = require('cors')
 
 const passport = require('./config/passport')
 
+const routesAuth = require('./routes/auth')
 const routesTeam = require('./routes/Team')
 const routesPlayer = require('./routes/Player')
 const routesUploadImg = require('./routes/UploadImg')
-
-
 
 const app = express()
 
@@ -22,7 +21,8 @@ app.use(express.static('public'))
 
 app.use( passport.initialize() )
 
-app.use(routesTeam)
+app.use(routesAuth)
+app.use('/api', routesTeam)
 app.use(routesPlayer)
 app.use(routesUploadImg)
 

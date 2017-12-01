@@ -3,6 +3,7 @@ import { getTeamById ,editTeamById } from '../services/api'
 import { Row, Col, Image } from 'react-bootstrap'
 import  SimpleForm  from '../components/SimpleForm'
 import ImageUpload from '../components/ImageUpload'
+import swal from 'sweetalert2'
 import axios from 'axios'
 const { REACT_APP_API_SERVER } = process.env
 
@@ -42,14 +43,21 @@ class EditTeam extends Component{
 	handleClick(){
    
 		let { id } = this.props.match.params
-		
 		editTeamById(id, {
 			logo: this.state.logo, 
 			name: this.state.name, 
 			location: this.state.location})
 			.then(() => {
+				swal({
+					position: 'top-right',
+					type: 'success',
+					title: 'Your team has been edit',
+					showConfirmButton: false,
+					timer: 2000
+				})
 				this.props.history.push(`/team/${id}`)
 			})
+			
 	}
   
 	componentDidMount(){
@@ -80,7 +88,7 @@ class EditTeam extends Component{
 						<Col xs={6} md={6}>	
 						{
 							logo &&
-							<Image width="300" src={ logo } alt={ logo } responsive />
+							<img className="img-responsive img-thumbnail" style={{margin: "auto 25%"}} width="300" src={ logo } alt={logo} />
 						}
 						</Col>
 					</Row>

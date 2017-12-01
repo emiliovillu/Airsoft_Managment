@@ -1,12 +1,12 @@
 require('dotenv').load()
-const {PORT, URL_DB_PROD} = process.env
+const {PORT, URL_DB} = process.env
 
 global.__base = __dirname
 
 const app = require('./app')
-const db = require('./config/db')
+const db = require('./app/config/db')
 
-db.openUri(URL_DB_PROD)
+db.openUri(URL_DB)
 
 app.listen(PORT)
 console.log(`Listening on PORT ${PORT}...`)

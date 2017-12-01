@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import GraphsStats from '../components/GraphsStats'
 import { getPlayerByIdInTeam, addStats } from '../services/api'
+import swal from 'sweetalert2'
 import '../styles/StatsPlayer.css'
 
 class Player extends Component {
@@ -42,7 +43,6 @@ class Player extends Component {
 	}
 
 	handleChange(e){
-		console.log(e.target.value)
 		this.setState({
 			[e.target.name]: e.target.value
 		})
@@ -52,6 +52,13 @@ class Player extends Component {
 		let { teamID, memberID } = this.props.match.params
 		addStats(teamID, memberID, {dead:this.state.dead, eliminations:this.state.eliminations, date:this.state.date})
 			.then(() => {
+				swal({
+					position: 'top-right',
+					type: 'success',
+					title: 'Your stats has been add correctly',
+					showConfirmButton: false,
+					timer: 1500
+				})
 				this.props.history.push(`/team/${teamID}/player/${memberID}/statsplayer`)
 			})
 	}
