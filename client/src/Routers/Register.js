@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { registerUser, loginUser } from '../services/authService'
 import  { saveToken } from '../services/storageService'
 import { Redirect } from 'react-router-dom'
+import swal from 'sweetalert2'
 import '../styles/Register.css'
 
 
@@ -23,6 +24,13 @@ class Register extends Component{
     await registerUser(username, password)
     const token = await loginUser(username, password)
     saveToken(token)
+    swal({
+      position: 'top-right',
+      type: 'success',
+      title: 'You has been register correctly',
+      showConfirmButton: false,
+      timer: 2000
+    })
     this.setState({
       fireRedirect: true
     })
@@ -32,6 +40,12 @@ class Register extends Component{
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  componentWillMount(){
+    this.props.hideNavigation()
+    document.body.style.background = 'url(http://www.esnporto.org/sites/default/files/styles/zoom/public/events/images/airsoft.jpg?itok=yL1dM7i4) no-repeat'
+    document.body.style.backgroundSize = 'cover' 
   }
 
 	render(){

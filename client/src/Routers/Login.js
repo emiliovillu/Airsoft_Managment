@@ -30,7 +30,7 @@ class Register extends Component{
       swal({
         position: 'top-right',
         type: 'success',
-        title: 'You logged correctly',
+        title: 'You has been logged correctly',
         showConfirmButton: false,
         timer: 1500
       })
