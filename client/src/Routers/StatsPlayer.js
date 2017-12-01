@@ -78,7 +78,7 @@ class Player extends Component {
 	render() {
 		const {teamID} = this.props.match.params
 		const date_game = this.state.date ? moment(this.state.date.toString()).format('DD MMM YYYY') : moment().format('DD MMM YYYY').toString()
-		console.log(this.state.date)
+		
 		return(
 			<Grid>
 				<Row>
@@ -107,7 +107,7 @@ class Player extends Component {
 									<form className="has-success">
 										<legend>Introduce las estadísticas</legend>
 										<div class="form-group">
-											<label for="exampleInputEmail1">Fecha de partida</label>
+											<label className="partidas" for="exampleInputEmail1">Fecha de partida</label>
 											<input onChange={this.handleChange} name="date" type="date" class="form-control" placeholder=""/>
 										</div>
 										<div className="form-group has-success">
