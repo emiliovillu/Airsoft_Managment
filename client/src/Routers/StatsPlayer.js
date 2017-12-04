@@ -59,7 +59,7 @@ class Player extends Component {
 					showConfirmButton: false,
 					timer: 1500
 				})
-				this.props.history.push(`/team/${teamID}/player/${memberID}/statsplayer`)
+				// this.props.history.push(`/team/${teamID}/player/${memberID}/statsplayer`)
 			})
 	}
 	
